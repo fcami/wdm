@@ -70,7 +70,7 @@ func BuildCommand() *cli.Command {
 }
 
 func wdmWrapper(c *cli.Context, f *Flags) error {
-	dependencySpec, err := config.ParseDependenciesConfigFile(f.ConfigFile)
+	dependencySpec, err := config.LoadYamlFile(f.ConfigFile)
 	if err != nil {
 		return fmt.Errorf("error parsing config file: %v", err)
 	}

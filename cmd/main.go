@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
+	wdm "github.com/openshift-psap/wdm/cmd/wdm"
 	log "github.com/sirupsen/logrus"
 	cli "github.com/urfave/cli/v2"
-	wdm "github.com/openshift-psap/wdm/cmd/wdm"
 )
 
 // flags
@@ -46,13 +46,15 @@ func main() {
 
 	// Set log-level for all subcommands
 	app.Before = func(app *cli.Context) error {
-		logLevel := log.InfoLevel
-		if flags.Debug {
-			logLevel = log.DebugLevel
-		}
+		/*
+			logLevel := log.InfoLevel
+			if flags.Verbose {
+				logLevel = log.DebugLevel
+			}
 
-		configLog := config.GetLogger()
-		configLog.SetLevel(logLevel)
+			configLog := config.GetLogger()
+			configLog.SetLevel(logLevel)
+		*/
 
 		return nil
 	}

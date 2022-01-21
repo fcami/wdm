@@ -2,6 +2,9 @@ package v1
 
 const Version = "v1"
 
+type DependencyObj struct {
+}
+
 type DependencyObjSpec struct {
 	Version     string                `json:"version"`
 	Description string                `json:"description,omitempty"`

@@ -8,7 +8,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	// v1 "github.com/openshift-psap/ci-dashboard/api/matrix/v1"
+	v1 "github.com/openshift-psap/wdm/api/v1"
 
 	"sigs.k8s.io/yaml"
 )
@@ -16,15 +16,15 @@ import (
 func LoadYamlFile(yamlFile string) ([]v1.DependencyObj, error) {
 	var err error
 	var configYaml []byte
-	fmt.Println("Reading from", configFile)
-	if configFile == "-" {
+	fmt.Println("Reading from", yamlFile)
+	if yamlFile == "-" {
 		scanner := bufio.NewScanner(os.Stdin)
 		for scanner.Scan() {
 			configYaml = append(configYaml, scanner.Bytes()...)
 			configYaml = append(configYaml, '\n')
 		}
 	} else {
-		configYaml, err = ioutil.ReadFile(configFile)
+		configYaml, err = ioutil.ReadFile(yamlFile)
 		if err != nil {
 			return nil, fmt.Errorf("read error: %v", err)
 		}
@@ -38,5 +38,5 @@ func LoadYamlFile(yamlFile string) ([]v1.DependencyObj, error) {
 	str, err := yaml.Marshal(objs)
 	fmt.Println(string(str))
 	fmt.Println("--")
-	return &objs, nil
+	return objs, nil
 }
