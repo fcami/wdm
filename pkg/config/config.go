@@ -4,6 +4,7 @@ package config
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -16,6 +17,7 @@ import (
 func LoadYamlFile(yamlFile string) ([]v1.DependencyObj, error) {
 	var err error
 	var configYaml []byte
+	var dependencyObjs []v1.DependencyObj
 	fmt.Println("Reading from", yamlFile)
 	if yamlFile == "-" {
 		scanner := bufio.NewScanner(os.Stdin)
@@ -29,14 +31,18 @@ func LoadYamlFile(yamlFile string) ([]v1.DependencyObj, error) {
 			return nil, fmt.Errorf("read error: %v", err)
 		}
 	}
-	var objs []v1.DependencyObj
-	err = yaml.Unmarshal(configYaml, &objs)
-	if err != nil {
-		return nil, fmt.Errorf("unmarshal error: %v", err)
+	for _, doc := range bytes.Split(configYaml, []byte("---")) {
+		var obj v1.DependencyObj
+		err = yaml.Unmarshal(doc, &obj)
+		if err != nil {
+			return nil, fmt.Errorf("unmarshal error: %v", err)
+		}
+		fmt.Println("--")
+		str, err := yaml.Marshal(obj)
+		fmt.Println(string(str))
+		fmt.Println("--")
+		fmt.Println(err)
+		dependencyObjs = append(dependencyObjs, obj)
 	}
-	fmt.Println("--")
-	str, err := yaml.Marshal(objs)
-	fmt.Println(string(str))
-	fmt.Println("--")
-	return objs, nil
+	return dependencyObjs, nil
 }
