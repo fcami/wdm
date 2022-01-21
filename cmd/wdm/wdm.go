@@ -3,6 +3,7 @@ package wdm
 import (
 	"fmt"
 
+	config "github.com/openshift-psap/wdm/pkg/config"
 	"github.com/sirupsen/logrus"
 	cli "github.com/urfave/cli/v2"
 )
