@@ -33,7 +33,7 @@ func main() {
 	app.Flags = []cli.Flag{
 		&cli.BoolFlag{
 			Name:        "verbose",
-			Aliases:     []string{"v"},
+			Aliases:     []string{"V"},
 			Usage:       "Enable verbose logging",
 			Destination: &flags.Verbose,
 			EnvVars:     []string{"WDM_VERBOSE"},
