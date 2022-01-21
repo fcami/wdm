@@ -2,6 +2,8 @@ module github.com/openshift-psap/wdm
 
 go 1.17
 
+replace github.com/openshift-psap/wdm => ./
+
 require (
 	github.com/sirupsen/logrus v1.8.1
 	github.com/urfave/cli/v2 v2.3.0

@@ -5,6 +5,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 	cli "github.com/urfave/cli/v2"
+	wdm "github.com/openshift-psap/wdm/cmd/wdm"
 )
 
 // flags
