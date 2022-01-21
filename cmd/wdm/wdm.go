@@ -32,7 +32,6 @@ func BuildCommand() *cli.Command {
 	// Create a flags struct to hold our flags
 	wdmFlags := Flags{}
 
-	// Create the 'daily_matrix' command
 	wdm := cli.Command{}
 	wdm.Name = "wdm"
 	wdm.Usage = "Workload Dependency Manager"
@@ -46,7 +45,7 @@ func BuildCommand() *cli.Command {
 			Name:        "config-file",
 			Aliases:     []string{"c"},
 			Usage:       "Configuration file to use for WDM",
-			Destination: &daily_matrixFlags.ConfigFile,
+			Destination: &wdm.ConfigFile,
 			Value:       DefaultConfigFile,
 			EnvVars:     []string{"WDM_CONFIG_FILE"},
 		},
