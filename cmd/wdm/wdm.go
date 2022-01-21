@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	DefaultConfigFile = "config_wdm.yaml"
+	DefaultConfigFile = "examples/prepare_cluster.yaml"
 )
 
 var log = logrus.New()
